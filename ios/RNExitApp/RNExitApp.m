@@ -11,7 +11,9 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(exitApp)
 {
-    exit(0);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[UIApplication sharedApplication] performSelector:@selector(suspend)];
+    });
 };
 
 @end
